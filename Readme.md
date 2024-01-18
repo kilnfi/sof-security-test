@@ -11,7 +11,7 @@ cd dapp
 Install the packages
 
 ```bash
-npm run dev
+npm install
 ```
 
 Run the dapp locally
@@ -20,3 +20,5 @@ Run the dapp locally
 npm run build
 npm run preview
 ```
+
+Now you can visit http://localhost:4173/ to view the dApp.
