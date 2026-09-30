@@ -93,7 +93,10 @@ function App() {
           ) : data && data !== "<ul></ul>" ? (
             <div
               className="[&>ul]:flex [&>ul]:gap-4 pl-3 [&>ul]:flex-col [&>ul>li]:p-2 [&>ul>li]:border [&>ul>li]:rounded [&>ul>li]:bg-gray-50"
-              dangerouslySetInnerHTML={{ __html: data }}
+              // Contract-rendered HTML only: strip <script> tags and inline
+              // event handlers before injecting so user-posted chat messages
+              // cannot execute JavaScript in the browser.
+              dangerouslySetInnerHTML={{ __html: data.replace(/<script[\s\S]*?<\/script>/gi, '').replace(/\son\w+="[^"]*"/gi, '').replace(/\son\w+='[^']*'/gi, '') }}
             />
           ) : (
             <p>No messages yet</p>
